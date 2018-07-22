@@ -8,7 +8,7 @@ applications:
   instances: 1
   domain: mybluemix.net
   name: mojani
-  host: mojanisurvey
+  host: mojanilrm
   disk_quota: 1024M
   services:
   - cloudant_land_records
