@@ -1,0 +1,6 @@
+/*CSS to go here */
+
+.required:after {
+    content: " *";
+    color : red;
+  }

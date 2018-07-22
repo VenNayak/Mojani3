@@ -1,0 +1,65 @@
+<div align="right"><app-logout></app-logout></div>
+<div  align="center">
+  <h3>Submit Survey for Layout</h3>
+</div>
+<div *ngIf="submitSuccess; then successMsg else approveForm" ></div>
+ <ng-template #approveForm>
+<div class="panel panel-default">
+<div class="panel-heading">
+  <h1 class="panel-title">Search Criteria</h1>
+</div>
+<div class="panel-body">
+  <div class="form-group">
+    <div class="col-md-4">
+      <label for="wardNo" class="control-label required" required>Ward #</label>
+      <input type="text" id="wardNo" name="wardNo" class="form-control"  [(ngModel)]="wardNo"  />
+    </div>
+    <div class="col-md-4">
+      <label for="wardNo" class="control-label required" required>Area Code</label>
+      <input type="text" id="areaCode" name="areaCode" class="form-control"  [(ngModel)]="areaCode"  />
+    </div>
+    <div class="col-md-4">
+	<br/>
+    <button type="submit" class="btn btn-primary" (click)= "search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+    </div>
+  </div>
+  </div>  
+  </div>
+<!--Search results of the land records for approval -->
+<div *ngIf= "fetchComplete" >
+<table class="table table-striped table-responsive table-bordered">
+<thead>
+    <tr>
+        <th>PID</th>
+        <th>Site No</th>
+        <th>Total Area</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Status</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let land of landRecords;let i = index">
+        <td><a [routerLink] = "['/layoutApplication']" [queryParams]="{pid:land.pid}">{{land.pid}}</a></td>
+        <td>{{land.siteNo}}</td>
+        <td>{{land.geoData.totalArea}}</td>
+        <td>{{land.geoData.latitude}}</td>
+        <td>{{land.geoData.longitude}}</td>
+        <td>{{getApplicationStatus(land)}}</td>
+  
+    </tr>
+</tbody>
+</table> 
+<div *ngIf='noSearchResults' style='color:red;' align='center'><strong>No matching results found !</strong></div>
+</div>
+</ng-template>
+<!--Success message for the approval-->
+<ng-template #successMsg >
+<div class="alert alert-success"> <strong>Success!</strong>
+The survey application has been submitted successfully !
+</div>
+<div class="alert alert-info">
+  Please click on <strong>OK</strong> to submit a new application !
+</div>
+<div align="center"><button type="submit" class="btn btn-primary" (click)="submitNew()">OK</button></div>
+</ng-template>

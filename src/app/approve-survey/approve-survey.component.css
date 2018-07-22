@@ -1,0 +1,29 @@
+/*CSS to come here */
+
+.modal {
+    position: absolute;
+    float: left;
+    top: 8%;
+  }
+
+
+  .modal-content {
+    position: relative;
+    background-color: #e7ecea;
+	
+  }
+	
+.modal-title {
+    font-weight: bold;
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color:#d0ded8;
+}
+
+.modal-body{
+    font-weight: bold;
+}
+
